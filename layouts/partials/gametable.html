@@ -1,0 +1,32 @@
+{{ $githubs := dict "weible" "Deen-Weible" "gravy59" "Gravy59" }}
+<table class="width:100%">
+  <thead>
+    <tr>
+      <th scope="col">Game</th>
+      <th scope="col">Who made it</th>
+      <th scope="col">Premise</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ $githubs := dict "weible" "Deen-Weible" "gravy59" "Gravy59" }}
+    {{ range .pageList }}
+      <tr>
+        <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+        <td>
+          <a href="//github.com/{{ index $githubs .Params.author }}">
+            {{ .Params.author }}
+          </a>
+        </td>
+        <td>{{ .Description }}</td>
+        {{ $statusClasses := dict "published" "ok" "early access" "warn" "stalled" "warn" "abandoned" "bad" "not started" "bad" }}
+        <td>
+          <chip
+            class="{{ index $statusClasses .Params.status | default "bad" }}">
+            {{ .Params.status }}
+          </chip>
+        </td>
+      </tr>
+    {{ end }}
+  </tbody>
+</table>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {{- partial "favicon.html" . -}}
+    <title>
+      {{- block "title" . }}
+        {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}
+      {{- end }}
+    </title>
+
+    {{- partial "seo_tags.html" . -}}
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+    {{- partial "style.html" . -}}
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <span class="allcaps">We Make Games</span>
+        <v-h>:</v-h>
+        <sub-title><i>That&rsquo;s what we do</i></sub-title>
+      </h1>
+      <nav>
+        <p class="tool-bar">
+          <a href="{{ "" | relURL }}">Home</a>
+          {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          {{ end }}
+          <a href="{{ "games" | relURL }}">Games</a>
+        </p>
+      </nav>
+    </header>
+    <main>{{- block "main" . }}{{- end }}</main>
+    <footer>
+      <p>
+        There really isn&rsquo;t enough to copyright here. Uh,
+        <span xmlns:cc="//creativecommons.org/ns#">
+          the content of this site is licensed under
+          <a
+            href="//creativecommons.org/licenses/by/4.0"
+            target="_blank"
+            rel="license noopener noreferrer"
+            class="inline">
+            CC BY 4.0
+            <img
+              class="cc-notice"
+              src="//mirrors.creativecommons.org/presskit/icons/cc.svg"
+              alt="" />
+            <img
+              class="cc-notice"
+              src="//mirrors.creativecommons.org/presskit/icons/by.svg"
+              alt="" />
+          </a>
+        </span>
+      </p>
+    </footer>
+  </body>
+</html>

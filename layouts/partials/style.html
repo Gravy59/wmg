@@ -1,0 +1,43 @@
+<link rel="preload" href="//unpkg.com/missing.css@1.1.3" as="style" />
+<link rel="stylesheet" href="//unpkg.com/missing.css@1.1.3" />
+<style>
+  .profile-image {
+    border-radius: calc(infinity * 1px);
+    width: 15rem;
+    height: 15rem;
+  }
+  .scrollboi {
+    overflow: hidden;
+    position: relative;
+    & ul {
+      overflow: scroll;
+      max-height: 3lh;
+      & li:nth-child(n + 4) {
+        position: relative;
+        z-index: 10;
+        background: var(--bg);
+      }
+    }
+    &.arrow {
+      position: absolute;
+      z-index: 0;
+      left: 50%;
+      bottom: 1lh;
+      pointer-events: none;
+      &::after {
+        content: "";
+        display: inline-block;
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+      }
+    }
+  }
+  .cc-notice {
+    height: 1.125rem;
+    margin-left: 0.1875rem;
+    vertical-align: text-bottom;
+    display: inline-block;
+  }
+</style>

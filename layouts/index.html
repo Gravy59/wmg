@@ -1,0 +1,62 @@
+{{ define "main" }}
+  {{ .Content }}
+  <div class="textcolumns">
+    <h2>
+      Things we
+      <u>do</u>
+      make
+    </h2>
+    <ul>
+      <li>games</li>
+    </ul>
+    <div class="scrollboi">
+      <h2>
+        Things we
+        <u>do not</u>
+        make
+      </h2>
+      <ul>
+        <li>drama</li>
+        <li>politics</li>
+        <li>love</li>
+        <li>sense</li>
+        <li>money</li>
+        <li>guarantees</li>
+        <li>bad games</li>
+        <li>games, so far</li>
+      </ul>
+      <span class="scrollboi arrow" aria-hidden="true" />
+    </div>
+  </div>
+  <hr />
+  <h2>Games we&rsquo;ve made</h2>
+  {{ partial "gametable" (dict "pageList" (where $.Site.RegularPages "Section" "games")) }}
+  <hr />
+  <h2>Who&rsquo;s &ldquo;we&rdquo;?</h2>
+  <div class="f-row">
+    <figure>
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/Deen-Weible.png" />
+      <figcaption>
+        <a href="//github.com/deen-weible">weible</a>
+        <br />
+        (the only one who&rsquo;s made a game so far)
+      </figcaption>
+    </figure>
+    <figure>
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/gravy59.png" />
+      <figcaption>
+        <a href="//gravy59.vercel.app">Gravy59</a>
+        <br />
+        (has made some games but not really)
+      </figcaption>
+    </figure>
+  </div>
+{{ end }}
