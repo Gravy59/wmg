@@ -5,3 +5,6 @@ enableRobotsTXT = true
 [params]
   description = 'We are a group of nerds who make games'
   title = 'We make games'
+  [params.githubs]
+    weible = "Deen-Weible"
+    gravy59 = "Gravy59"

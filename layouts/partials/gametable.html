@@ -1,4 +1,3 @@
-{{ $githubs := dict "weible" "Deen-Weible" "gravy59" "Gravy59" }}
 <table class="width:100%">
   <thead>
     <tr>
@@ -9,22 +8,21 @@
     </tr>
   </thead>
   <tbody>
-    {{ $githubs := dict "weible" "Deen-Weible" "gravy59" "Gravy59" }}
     {{ range .pageList }}
       <tr>
         <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
         <td>
-          <a href="//github.com/{{ index $githubs .Params.author }}">
+          <a
+            href="//github.com/{{ index .Site.Params.githubs .Params.author }}">
             {{ .Params.author }}
           </a>
         </td>
         <td>{{ .Description }}</td>
         {{ $statusClasses := dict "published" "ok" "early access" "warn" "stalled" "warn" "abandoned" "bad" "not started" "bad" }}
-        <td>
-          <chip
-            class="{{ index $statusClasses .Params.status | default "bad" }}">
-            {{ .Params.status }}
-          </chip>
+        <td
+          style="background-color:var(--{{ index $statusClasses .Params.status | default "bad" }}-bg);--gap:0.25rem;vertical-align:middle;"
+          class="padding-inline">
+          {{ .Params.status }}
         </td>
       </tr>
     {{ end }}
