@@ -1,4 +1,28 @@
 {{ define "main" }}
-  <h1>Games we&rsquo;ve made</h1>
-  {{ partial "gametable" ( dict "pageList" .Pages ) }}
+  <h1>Games and ongoing projects</h1>
+  <ul role="list">
+    {{ range .Pages }}
+      <li>
+        <article class="box">
+          <div class="f-col align-items:start" style="--gap:calc(1.4rem*0.5)">
+            <a href="{{ .Permalink }}"><strong>{{ .Title }}</strong></a>
+            <div class="f-row">
+              <dl>
+                <dt class="vh">Published on</dt>
+                <dd class="no-margin">
+                  <chip>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}" pubdate>
+                      {{ .Date.Format "Jan 2006" }}
+                    </time>
+                  </chip>
+                </dd>
+              </dl>
+              {{ partial "gamestatus" (dict "status" .Params.status) }}
+            </div>
+            <span class="clamp-2">{{ .Summary | plainify }}</span>
+          </div>
+        </article>
+      </li>
+    {{ end }}
+  </ul>
 {{ end }}

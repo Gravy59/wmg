@@ -30,12 +30,42 @@
   </div>
   <hr />
   <h2>Games we&rsquo;ve made</h2>
-  {{ partial "gametable" (dict "pageList" (where $.Site.RegularPages "Section" "games")) }}
+  <div class="overflow:scroll" role="region" aria-label="Games we've made">
+    <table class="gametable">
+      <thead>
+        <tr>
+          <th scope="col">Game</th>
+          <th scope="col">Who made it</th>
+          <th scope="col">Premise</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range (where $.Site.RegularPages "Section" "games") }}
+          <tr>
+            <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+            <td>
+              <a
+                href="//github.com/{{ index .Site.Params.githubs .Params.author }}">
+                {{ .Params.author }}
+              </a>
+            </td>
+            <td>{{ .Description }}</td>
+            <td>{{ partial "gamestatus" (dict "status" .Params.status) }}</td>
+          </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
   <hr />
   <h2>Who&rsquo;s &ldquo;we&rdquo;?</h2>
   <div class="f-row">
     <figure>
-      <img class="profile-image" width="240" height="240" src="//github.com/Deen-Weible.png" />
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/Deen-Weible.png" />
       <figcaption>
         <a href="//github.com/deen-weible">weible</a>
         <br />
@@ -43,7 +73,11 @@
       </figcaption>
     </figure>
     <figure>
-      <img class="profile-image" width="240" height="240" src="//github.com/gravy59.png" />
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/gravy59.png" />
       <figcaption>
         <a href="//gravy59.vercel.app">Gravy59</a>
         <br />

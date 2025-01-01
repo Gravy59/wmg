@@ -1,0 +1,6 @@
+{{ $statusClasses := dict "published" "ok" "early access" "warn" "stalled" "warn" "abandoned" "bad" "not started" "bad" }}
+<chip
+  class="{{ index $statusClasses .status | default "bad" }}"
+  style="white-space: nowrap;">
+  {{ .status }}
+</chip>

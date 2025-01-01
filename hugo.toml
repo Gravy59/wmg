@@ -1,10 +1,11 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://we-make-games.vercel.app/'
 languageCode = 'en-US'
 title = 'We make games'
 enableRobotsTXT = true
+summaryLength = 32
 [params]
-  description = 'We are a group of nerds who make games'
-  title = 'We make games'
-  [params.githubs]
-    weible = "Deen-Weible"
-    gravy59 = "Gravy59"
+description = 'We are a group of nerds who make games'
+title = 'We make games'
+[params.githubs]
+weible = "Deen-Weible"
+gravy59 = "Gravy59"

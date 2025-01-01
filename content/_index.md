@@ -1,5 +1,5 @@
 +++
-title = "We Make Games"
+title = "Home"
 +++
 
 We are a group of absolute NERDS that make games. There may be some confusion as to what we do and
