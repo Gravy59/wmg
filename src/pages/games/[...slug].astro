@@ -1,0 +1,59 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { AUTHORS } from "@/consts";
+
+export async function getStaticPaths() {
+  const games = await getCollection("games");
+  return games.map((game) => ({
+    params: { slug: game.id },
+    props: game,
+  }));
+}
+type Props = CollectionEntry<"games">;
+
+const game = Astro.props;
+const { Content } = await render(game);
+---
+
+<Layout {...game.data}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      headline: game.data.title,
+      name: game.data.title,
+      description: game.data.description,
+      datePublished: game.data.pubDate.toISOString(),
+      dateModified: game.data.updatedDate?.toISOString() ?? undefined,
+      author: {
+        "@type": "Person",
+        name: game.data.author,
+        url: AUTHORS[game.data.author],
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "We Make Games",
+      },
+    })}
+  />
+  <h1>{game.data.title}</h1>
+  <address>
+    By <a href={`//github.com/${game.data.author}`}>{game.data.author}</a>
+  </address>
+  <p>
+    <time datetime={game.data.pubDate.toISOString().slice(9)}>
+      <!-- It shouldn't have to be like this but it is :( -->
+      {game.data.pubDate.toLocaleDateString("en-CA")}
+    </time>
+  </p>
+  <Content />
+</Layout>
+<style is:inline>
+  img {
+    width: 100%;
+    height: auto;
+  }
+</style>

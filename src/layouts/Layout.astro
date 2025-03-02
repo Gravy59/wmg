@@ -1,0 +1,142 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+  title = "Home",
+  description = "We are a group of absolute NERDS who make games",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <AstroSeo
+      {title}
+      titleTemplate="%s | We Make Games"
+      {description}
+      canonical={canonicalURL.toString()}
+      openGraph={{
+        url: canonicalURL.toString(),
+        title,
+        description,
+        site_name: "We Make Games",
+      }}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="//unpkg.com/missing.css@1.1.3" as="style" />
+    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.3" />
+  </head>
+  <body>
+    <header class="navbar">
+      <nav class="contents" aria-label="Site navigation">
+        <p class="allcaps bold">We Make Games</p>
+        <hr />
+        <ul role="list">
+          <li>
+            <a href="/" rel="home">Home</a>
+          </li>
+          <li>
+            <a href="/games">Games</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>
+        There really isn&rsquo;t enough to copyright here. Uh,
+        <!-- @ts-expect-error -->
+        <span xmlns:cc="//creativecommons.org/ns#">
+          the content of this site is licensed under
+          <a
+            href="//creativecommons.org/licenses/by/4.0"
+            target="_blank"
+            rel="license noopener noreferrer"
+            class="inline"
+          >
+            CC BY 4.0
+            <img
+              class="cc-notice"
+              src="//mirrors.creativecommons.org/presskit/icons/cc.svg"
+              alt=""
+            />
+            <img
+              class="cc-notice"
+              src="//mirrors.creativecommons.org/presskit/icons/by.svg"
+              alt=""
+            />
+          </a>
+        </span>
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --line-length: 65ch;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 1 auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .\<h1\>,
+  .\<h2\>,
+  .\<h3\>,
+  .\<h4\>,
+  .\<h5\>,
+  .\<h6\> {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+  .clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .no-margin {
+    margin: 0;
+  }
+  .cc-notice {
+    height: 1.125rem;
+    margin-left: 0.1875rem;
+    vertical-align: text-bottom;
+    display: inline-block;
+    width: unset;
+  }
+</style>

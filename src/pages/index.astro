@@ -1,0 +1,121 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import GameCard from "@/components/GameCard.astro";
+const games = await getCollection("games").then((games) =>
+  games
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, 3)
+);
+---
+
+<Layout>
+  <h1>
+    <span class="allcaps">
+      We Make Games
+      <v-h>:</v-h>
+    </span>
+    <sub-title>That&rsquo;s what we do</sub-title>
+  </h1>
+  <p>
+    We are a group of absolute NERDS that make games. There may be some
+    confusion as to what we do and do not make, so here’s a simple list:
+  </p>
+  <div class="textcolumns">
+    <h2>
+      Things we
+      <u>do</u>
+      make
+    </h2>
+    <ul>
+      <li>games</li>
+    </ul>
+    <div class="scrollboi">
+      <h2>
+        Things we
+        <u>do not</u>
+        make
+      </h2>
+      <ul>
+        <li>drama</li>
+        <li>politics</li>
+        <li>love</li>
+        <li>sense</li>
+        <li>money</li>
+        <li>guarantees</li>
+        <li>bad games</li>
+        <li>games, so far</li>
+      </ul>
+      <span class="scrollboi arrow" aria-hidden="true"></span>
+    </div>
+  </div>
+  <hr />
+  <h2>Games we&rsquo;ve made</h2>
+  <ul role="list">
+    {games.map((g) => <GameCard {...g} />)}
+  </ul>
+  <a href="/games">View all &rarr;</a>
+  <hr />
+  <h2>Who&rsquo;s &ldquo;we&rdquo;?</h2>
+  <div class="f-switch dense align-items:stretch">
+    <figure>
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/Deen-Weible.png"
+      />
+      <figcaption>
+        <a href="//github.com/deen-weible">weible</a>
+        <br />
+        (the only one who&rsquo;s made a game so far)
+      </figcaption>
+    </figure>
+    <figure>
+      <img
+        class="profile-image"
+        width="240"
+        height="240"
+        src="//github.com/gravy59.png"
+      />
+      <figcaption>
+        <a href="//gravy59.vercel.app">Gravy59</a>
+        <br />
+        (has made some games but not really)
+      </figcaption>
+    </figure>
+  </div>
+</Layout>
+<style>
+  .profile-image {
+    border-radius: calc(infinity * 1px);
+  }
+  .scrollboi {
+    overflow: hidden;
+    position: relative;
+    & ul {
+      overflow: scroll;
+      max-height: 3lh;
+      & li:nth-child(n + 4) {
+        position: relative;
+        z-index: 10;
+        background: var(--bg);
+      }
+    }
+    &.arrow {
+      position: absolute;
+      z-index: 0;
+      left: 50%;
+      bottom: 1lh;
+      pointer-events: none;
+      &::after {
+        content: "";
+        display: inline-block;
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+      }
+    }
+  }
+</style>

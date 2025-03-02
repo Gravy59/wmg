@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"games">;
+const { id, data } = Astro.props;
+const chipStatus: Record<Props["data"]["status"], "ok" | "warn" | "bad"> = {
+  available: "ok",
+  "early access": "warn",
+  stuck: "warn",
+  abandoned: "bad",
+  "not started": "bad",
+};
+---
+
+<li class="box">
+  <article class="f-col align-items:start" style="--gap:calc(1.4rem*0.5)">
+    <a href={`/games/${id}`}><strong>{data.title}</strong></a>
+    <div class="f-row">
+      <dl>
+        <dt class="vh">Published on</dt>
+        <dd class="no-margin">
+          <chip>
+            <time datetime={data.pubDate.toISOString().slice(9)}>
+              {data.pubDate.toLocaleDateString("en-CA")}
+            </time>
+          </chip>
+        </dd>
+      </dl>
+      <chip class={chipStatus[data.status]} style="white-space: nowrap;"
+        >{data.status}</chip
+      >
+    </div>
+    <span class="clamp-2">{data.description}</span>
+  </article>
+</li>

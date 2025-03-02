@@ -1,6 +1,24 @@
 {
-  "dependencies": {},
+  "name": "we-make-games",
+  "private": true,
+  "type": "module",
+  "version": "2.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fmt": "prettier --write ."
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vercel": "^8.1.0",
+    "@astrolib/seo": "^1.0.0-beta.8",
+    "astro": "^5.4.1"
+  },
   "devDependencies": {
-    "prettier-plugin-go-template": "^0.0.15"
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "prettier": "^3.5.2",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

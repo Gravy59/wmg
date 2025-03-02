@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import GameCard from "@/components/GameCard.astro";
+const games = (await getCollection("games")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Layout>
+  <h1>Games We&rsquo;ve Made</h1>
+  <ul role="list">{games.map((g) => <GameCard {...g} />)}</ul>
+</Layout>
