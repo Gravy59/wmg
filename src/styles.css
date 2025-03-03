@@ -36,6 +36,10 @@
   p {
     text-wrap: pretty;
   }
+
+  img {
+    inline-size: 100%;
+  }
 }
 
 @layer utils {

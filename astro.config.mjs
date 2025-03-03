@@ -8,6 +8,7 @@ export default defineConfig({
   site: "https://we-make-games.vercel.app/",
   integrations: [sitemap()],
   adapter: vercel(),
+  image: { domains: ["mirrors.creativecommons.org"] },
   vite: {
     css: {
       transformer: "lightningcss",

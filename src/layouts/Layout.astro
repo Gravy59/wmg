@@ -1,6 +1,8 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-import '@/styles.css'
+import "@/styles.css";
+import "@fontsource/source-sans-3";
+
 interface Props {
   title?: string;
   description?: string;
@@ -32,12 +34,6 @@ const {
         description,
         site_name: "We Make Games",
       }}
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
-      rel="stylesheet"
     />
   </head>
   <body>
@@ -71,17 +67,7 @@ const {
             class="inline"
           >
             CC BY 4.0
-            <img
-              class="cc-notice"
-              src="//mirrors.creativecommons.org/presskit/icons/cc.svg"
-              alt=""
-            />
-            <img
-              class="cc-notice"
-              src="//mirrors.creativecommons.org/presskit/icons/by.svg"
-              alt=""
-            />
-          </a>
+          </a>.
         </span>
       </p>
     </footer>

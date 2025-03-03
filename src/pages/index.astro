@@ -1,6 +1,8 @@
 ---
 import GameCard from "@/components/GameCard.astro";
+import { AUTHORS } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const games = await getCollection("games").then((games) =>
@@ -19,8 +21,7 @@ const games = await getCollection("games").then((games) =>
       url: new URL(Astro.url.pathname, Astro.site),
       logo: "https://www.example.com/images/favicon.svg",
       name: "We Make Games",
-      description:
-        "We are a group of absolute NERDS who make games.",
+      description: "We are a group of absolute NERDS who make games.",
     })}
   />
   <h1>
@@ -71,32 +72,26 @@ const games = await getCollection("games").then((games) =>
   <hr />
   <h2>Who&rsquo;s &ldquo;we&rdquo;?</h2>
   <div class="f-switch dense align-items:stretch">
-    <figure>
-      <img
-        class="profile-image"
-        width="240"
-        height="240"
-        src="//github.com/Deen-Weible.png"
-      />
-      <figcaption>
-        <a href="//github.com/deen-weible">weible</a>
-        <br />
-        (the only one who&rsquo;s made a game so far)
-      </figcaption>
-    </figure>
-    <figure>
-      <img
-        class="profile-image"
-        width="240"
-        height="240"
-        src="//github.com/gravy59.png"
-      />
-      <figcaption>
-        <a href="//gravy59.vercel.app">Gravy59</a>
-        <br />
-        (has made some games but not really)
-      </figcaption>
-    </figure>
+    {
+      Object.entries(AUTHORS).map(([author, details]) => (
+        <figure>
+          <img
+            loading="lazy"
+            decoding="async"
+            class="profile-image"
+            width={240}
+            height={240}
+            src={`/${author}.avif`}
+            alt={author}
+          />
+          <figcaption>
+            <a href={details.url}>{author}</a>
+            <br />
+            {details.bio}
+          </figcaption>
+        </figure>
+      ))
+    }
   </div>
 </Layout>
 <style>
