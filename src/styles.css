@@ -1,0 +1,94 @@
+@layer framework, base, utils, header;
+
+/*! missing.css | BSD-2-Clause License | https://github.com/bigskysoftware/missing */
+@import url("missing.css") layer(framework);
+
+@layer base {
+  :root {
+    --line-length: 65ch;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 1 auto;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .\<h1\>,
+  .\<h2\>,
+  .\<h3\>,
+  .\<h4\>,
+  .\<h5\>,
+  .\<h6\> {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utils {
+  .clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .no-margin {
+    margin: 0;
+  }
+  .cc-notice {
+    height: 1.125rem;
+    margin-left: 0.1875rem;
+    vertical-align: text-bottom;
+    display: inline-block;
+    width: unset;
+  }
+  .vh,
+  v-h {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer header {
+  .navbar {
+    z-index: 50;
+    margin-block: 0;
+  }
+  @media (width <= 40rem) {
+    .max-sm\:flow-col {
+      flex-flow: column;
+    }
+    .navbar {
+      align-items: flex-start;
+    }
+    .navbar > :first-child,
+    .navbar nav > :first-child {
+      margin-inline-start: 0;
+    }
+
+    .navbar > :last-child,
+    .navbar nav > :last-child {
+      margin-inline-end: 0;
+    }
+  }
+}

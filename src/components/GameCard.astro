@@ -14,22 +14,30 @@ const chipStatus: Record<Props["data"]["status"], "ok" | "warn" | "bad"> = {
 
 <li class="box">
   <article class="f-col align-items:start" style="--gap:calc(1.4rem*0.5)">
-    <a href={`/games/${id}`}><strong>{data.title}</strong></a>
-    <div class="f-row">
-      <dl>
-        <dt class="vh">Published on</dt>
-        <dd class="no-margin">
-          <chip>
-            <time datetime={data.pubDate.toISOString().slice(9)}>
-              {data.pubDate.toLocaleDateString("en-CA")}
-            </time>
-          </chip>
-        </dd>
-      </dl>
-      <chip class={chipStatus[data.status]} style="white-space: nowrap;"
-        >{data.status}</chip
-      >
+    <div class="f-row justify-content:space-between width:100%">
+      <a href={`/games/${id}`}><strong>{data.title}</strong></a>
+      <i>{data.author}</i>
     </div>
+
+    <dl class="f-row attrlist">
+      <dt class="vh">Published on</dt>
+      <dd class="chip no-margin">
+        <time datetime={data.pubDate.toISOString().slice(9)}>
+          {data.pubDate.toLocaleDateString("en-CA")}
+        </time>
+      </dd>
+      <dt class="vh">Status</dt>
+      <dd class:list={["chip no-margin", chipStatus[data.status]]}>
+        {data.status}
+      </dd>
+    </dl>
+
     <span class="clamp-2">{data.description}</span>
   </article>
 </li>
+<style>
+  .attrlist {
+    --gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+</style>

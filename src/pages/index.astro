@@ -1,11 +1,12 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
 import GameCard from "@/components/GameCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
 const games = await getCollection("games").then((games) =>
   games
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-    .slice(0, 3)
+    .slice(0, 3),
 );
 ---
 
