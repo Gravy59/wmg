@@ -6,6 +6,10 @@
 @layer base {
   :root {
     --line-length: 65ch;
+    --main-font:
+      "Source Sans 3 Variable", "Source Sans Pro" -apple-system, BlinkMacSystemFont, avenir next,
+      avenir, segoe ui, helvetica neue, Cantarell, Ubuntu, roboto, noto,
+      helvetica, arial, sans-serif;
   }
   html {
     height: 100%;
@@ -71,7 +75,9 @@
     white-space: nowrap;
     border-width: 0;
   }
-  .flex-wrap {flex-wrap: wrap;}
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
 }
 
 @layer header {
@@ -85,8 +91,9 @@
     }
     .navbar {
       align-items: flex-start;
-      p:first-child, hr {
-        display:none;
+      p:first-child,
+      hr {
+        display: none;
       }
     }
     .navbar > :first-child,
