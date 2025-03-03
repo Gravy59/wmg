@@ -26,24 +26,48 @@ const { Content } = await render(game);
     </style>
     <script
       type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        headline: game.data.title,
-        name: game.data.title,
-        description: game.data.description,
-        datePublished: game.data.pubDate.toISOString(),
-        dateModified: game.data.updatedDate?.toISOString() ?? undefined,
-        author: {
-          "@type": "Person",
-          name: game.data.author,
-          url: AUTHORS[game.data.author],
+      set:html={JSON.stringify([
+        {
+          "@context": "https://schema.org/",
+          "@type": "VideoGame",
+          headline: game.data.title,
+          name: game.data.title,
+          description: game.data.description,
+          datePublished: game.data.pubDate.toISOString(),
+          dateModified: game.data.updatedDate?.toISOString() ?? undefined,
+          author: {
+            "@type": "Person",
+            name: game.data.author,
+            url: AUTHORS[game.data.author].url,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "We Make Games",
+          },
         },
-        publisher: {
-          "@type": "Organization",
-          name: "We Make Games",
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              item: {
+                "@id": new URL("/games", Astro.site),
+                name: "Games",
+              },
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              item: {
+                "@id": new URL(Astro.url.pathname, Astro.site),
+                name: game.data.title,
+              },
+            },
+          ],
         },
-      })}
+      ])}
     />
     <h1>{game.data.title}</h1>
     <address>

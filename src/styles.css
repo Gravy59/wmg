@@ -67,6 +67,7 @@
     white-space: nowrap;
     border-width: 0;
   }
+  .flex-wrap {flex-wrap: wrap;}
 }
 
 @layer header {
@@ -80,6 +81,9 @@
     }
     .navbar {
       align-items: flex-start;
+      p:first-child, hr {
+        display:none;
+      }
     }
     .navbar > :first-child,
     .navbar nav > :first-child {
